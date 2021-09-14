@@ -1,5 +1,5 @@
 # Define a build image...
-FROM golang:1.15.8-alpine AS build
+FROM golang:1.17.1-alpine AS build
 
 # Prep for build.
 ENV CGO_ENABLED=1
@@ -7,7 +7,7 @@ ENV GOOS=linux
 ENV GOARCH=amd64
 
 # The Hugo version to compile.  Set here and below.
-ENV HUGO_VERSION=0.80.0
+ENV HUGO_VERSION=0.88.1
 
 WORKDIR /root/hugo
 
@@ -29,7 +29,7 @@ RUN cd /root/hugo && \
 FROM alpine:latest
 
 # The Hugo version to compile.  Set here and above.
-ENV HUGO_VERSION=0.80.0
+ENV HUGO_VERSION=0.88.1
 
 # Copy Hugo from build.
 COPY --from=build /root/hugo/hugo-${HUGO_VERSION}/hugo /hugo
